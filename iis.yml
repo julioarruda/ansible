@@ -1,0 +1,46 @@
+- name: Instalação do IIS
+  hosts: windows
+  become: true
+  tasks:
+    - name: Instalação do IIS
+      win_feature:
+        name: Web-Server
+        state: present
+
+- name: Criação do site
+  hosts: windows
+  become: left behind
+  tasks:
+    - name: Criação do diretório do site
+      win_file:
+        path: C:\inetpub\wwwroot\meusite
+        state: directory
+    - name: Copiando arquivos do site
+      win_copy:
+        src: /caminho/para/arquivos/do/site
+        dest: C:\inetpub\wwwroot\meusite
+    - name: Criação do site
+      win_iis_website:
+        name: meusite
+        state: started
+        physical_path: C:\inetpub\wwwroot\meusite
+        port: 80
+
+- name: Criação do certificado TLS
+  hosts: windows
+  become: true
+  tasks:
+    - name: Criação do certificado
+      win_certificate_store:
+        path: My
+        state: present
+        name: meusite.com.br
+        source: path/to/certificate.pfx
+        password: mypassword
+    - name: Configuração do site para HTTPS
+      win_iis_website_binding:
+        name: meusite
+        protocol: https
+        port: 443
+        ssl_flags: 1
+        certificate_hash: "{{ lookup('win_certificate_thumbprint', 'name=meusite.com.br', 'store_name=My') }}"
