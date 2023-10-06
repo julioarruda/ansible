@@ -1,5 +1,5 @@
 aimpact_licence: "GFT_LICENCE"
-language: pt-br
+language: en
 isAzureOpenAI: true
 AzOpenAI:
   endpoint: "AZ_OPENAI_ENDPOINT"
