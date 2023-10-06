@@ -1,8 +1,6 @@
-name: PR Review
+name: Doc
 
 on:
-  pull_request:
-    types: [opened]
   workflow_dispatch:
 
 jobs:
@@ -32,4 +30,4 @@ jobs:
 
     - name: Run GFT Code Review
       run: |
-        ./tools/gft codereview --config_path config.yaml --pullnumber ${{ github.event.pull_request.number }}
+        ./tools/gft autodoc --config_path config.yaml
