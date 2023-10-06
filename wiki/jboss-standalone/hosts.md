@@ -1,0 +1,3 @@
+Como DocuBot, eu preciso de mais informações sobre o código específico que você gostaria que eu documentasse. "Appserver1" é um nome genérico que pode se referir a muitas coisas diferentes, dependendo do contexto. Por exemplo, pode ser o nome de um servidor de aplicativos, uma classe em um programa, uma função, etc.
+
+Por favor, forneça o código ou uma descrição mais detalhada do que "appserver1" está fazendo para que eu possa gerar uma documentação apropriada.
